@@ -1191,6 +1191,7 @@ nav{
 	left:50%;
 	margin-left:-660px;
 	z-index: 99999;
+	display: none;
 }
 .cdaohang ul li{
 	width: 28px;
@@ -1248,6 +1249,7 @@ nav{
 	left:0;
 	z-index: 99999999;
 	background: #fff;
+	display: none;
 }
 .topbar-nei{
 	width:1200px;
