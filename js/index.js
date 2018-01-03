@@ -83,3 +83,82 @@
     
 }
 
+
+{
+
+        let topBar=document.querySelector(".topbar");
+        let leftBar=document.querySelector(".cdaohang");
+        console.log(topBar)
+        console.log(leftBar)
+        let flag=true;
+        onscroll=function(){
+            var st=document.documentElement.scrollTop;
+            if(st>500){
+                //topBar.style.top="0";
+                topBar.style.display="block";
+            }else{
+                // topBar.style.top="-40px";
+                topBar.style.display="none";
+            }
+            if(st>600){
+                leftBar.style.display="block";
+            }else{
+                leftBar.style.display="none";
+            }
+            floors.forEach(function(ele,index){
+                if(st>=ele.offsetTop){
+                    for(var i=0;i<btns.length;i++){
+                        btns[i].classList.remove("active");
+                    }
+                    btns[index].classList.add("active");
+                }
+            });
+        }
+
+
+//返回顶部
+
+        var toTop=document.querySelector(".totop");
+        toTop.onclick=function(){
+            var st=document.documentElement.scrollTop;
+            var speed=st*30/100;
+            var t=setInterval(function(){
+                st-=speed;
+                if(st<=0){
+                    st=0;
+                    clearInterval(t);
+                };
+                document.documentElement.scrollTop=st;
+                flag=false;
+
+            },30);
+        }
+
+
+//楼层跳转
+
+        var btns=document.querySelectorAll(".cdaohang ul li");
+        var floors=document.querySelectorAll(".xyhbox");
+        btns.forEach(function(ele,index){
+            ele.onclick=function(){
+                var ot=floors[index].offsetTop;
+                var now=document.documentElement.scrollTop;
+                var speed=(ot-now)*30/300;
+                var time=0;
+                var t=setInterval(function(){
+                    now+=speed;
+                    time+=30;
+                    if(time==300){
+                        clearInterval(t);
+                        now=ot;
+
+                    }
+                    document.documentElement.scrollTop=now;
+                },30)
+            }
+
+        })
+
+
+}
+
