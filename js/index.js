@@ -60,36 +60,27 @@
     	if(flag){
     		flag=false;
     		bannersFn();
-
     	}
-    		
-    	
-    	
     }
     banLeft.onclick=function(){
     	if(flag){
     		flag=false;
     		bannersFn("l");
     	}
-    	
-
     }
     banners.forEach(function(ele,index){
     	ele.addEventListener("transitionend",function(){
     		flag=true;
     	})
-
     })
-    
 }
 
 
 {
 
         let topBar=document.querySelector(".topbar");
-        let leftBar=document.querySelector(".cdaohang");
-        console.log(topBar)
-        console.log(leftBar)
+        let leftBar=document.querySelector("#menu");
+
         let flag=true;
         onscroll=function(){
             var st=document.documentElement.scrollTop;
@@ -118,7 +109,7 @@
 
 //返回顶部
 
-        var toTop=document.querySelector(".totop");
+        var toTop=document.querySelector(".back");
         toTop.onclick=function(){
             var st=document.documentElement.scrollTop;
             var speed=st*30/100;
@@ -137,11 +128,12 @@
 
 //楼层跳转
 
-        var btns=document.querySelectorAll(".cdaohang ul li");
+        var btns=document.querySelectorAll("#menu .btn");
         var floors=document.querySelectorAll(".xyhbox");
         btns.forEach(function(ele,index){
             ele.onclick=function(){
                 var ot=floors[index].offsetTop;
+
                 var now=document.documentElement.scrollTop;
                 var speed=(ot-now)*30/300;
                 var time=0;
@@ -160,5 +152,75 @@
         })
 
 
+}
+
+//无缝轮播
+{
+    let zuoyi=document.querySelector(".yhzq-gundong ul");
+    let items=document.querySelectorAll(".yhzq-gundong ul li");
+    let num=0;
+    var st=setInterval(function(){
+       num++;
+       if (num===1){
+           zuoyi.style.transition="all 1s";
+       }
+       zuoyi.style.marginLeft=-[num]*241+"px";
+     },3000);
+    zuoyi.addEventListener("transitionend",function(){
+        if(num===items.length-4){
+            zuoyi.style.transition="none";
+            num=0;
+            zuoyi.style.marginLeft=0;
+        }
+    })
+
+}
+
+//咪咕视频轮播
+{
+    let mgbanner=document.querySelectorAll(".nihao li");
+    let mgBtn=document.querySelectorAll(".mgbox3-circle ul li");
+    let mgBigbox=document.querySelector(".mgbox3-top");
+    mgBtn.forEach(function(ele,index){
+        ele.onmouseover=function(){
+            for(let i=0;i<mgBtn.length;i++){
+                mgBtn[i].classList.remove("active");
+                mgbanner[i].classList.remove("active");
+            }
+            this.classList.add("active");
+            mgbanner[index].classList.add("active");
+            n=index;
+        }
+    });
+    let n=0;
+    let st=setInterval(function(ele,index){
+        n++;
+        if(n==mgBtn.length){
+            n=0;
+        }
+        for(let i=0;i<mgBtn.length;i++){
+            mgBtn[i].classList.remove("active");
+            mgbanner[i].classList.remove("active");
+        }
+        mgBtn[n].classList.add("active");
+        mgbanner[n].classList.add("active");
+    },5000)
+    mgBigbox.onmouseover=function () {
+        clearInterval(st);
+    }
+    mgBigbox.onmouseout=function () {
+        setInterval(function(ele,index){
+            n++;
+            if(n==mgBtn.length){
+                n=0;
+            }
+            for(let i=0;i<mgBtn.length;i++){
+                mgBtn[i].classList.remove("active");
+                mgbanner[i].classList.remove("active");
+            }
+            mgBtn[n].classList.add("active");
+            mgbanner[n].classList.add("active");
+        },5000)
+    }
 }
 

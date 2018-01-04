@@ -468,33 +468,44 @@ nav{
 	margin-top: 20px;
 	position: relative;
 }
-.yhzq ul{
-	width: 1200px;
+.yhzq-guanggao{
+	width: 235px;
+	height:170px;
+	margin-right: 5px;
+	float: left;
+}
+.yhzq-gundong{
+	height:170px;
+	width: 960px;
+	float: left;
+	overflow: hidden;
+}
+.yhzq-gundong ul{
+	width: 1928px;
 	height: 170px;
 	display: flex;
 	justify-content: space-between;
+	transition: all 1s;
 }
-.yhzq ul li{
+.yhzq-gundong ul li{
 	height:170px;
 	width: 235px; 
 	margin-right: 6px;
 	background: #F4F4F4;
 }
-.yhzq ul li:last-child{
-	margin-right: 0;
-}
-.yhzq ul li h2{
+
+.yhzq-gundong ul li h2{
 	font-size: 20px;
 	margin-top: 15px;
 	margin-left: 15px;
 }
-.yhzq ul li p{
+.yhzq-gundong ul li p{
 	font-size: 14px;
 	color: #666;
 	margin-left: 15px;
 	margin-top: 6px;
 }
-.yhzq ul li img{
+.yhzq-gundong ul li img{
 	float: right;
 }
 .yhzq-left{
@@ -919,23 +930,66 @@ nav{
     height: 210px;
     margin: 6px auto;
     overflow: hidden;
+	position: relative;
 
   
 }
-.mgbox3-top ul{
+.nihao{
 	  position: relative;
 }
-.mgbox3-top ul li a{
+.nihao li a{
 	display: block;
 	width:710px;
 	height: auto;
+
 }
-.mgbox3-top li{
+.nihao li{
 	width: 710px;
 	position: absolute;
 	top: 0;
 	left: 0;
+	opacity: 0;
+	transition: all 3s;
+
 }
+.mgbox3-circle{
+	width: 66px;
+	height:20px;
+	border-radius: 10px;
+	background: rgba(255,255,255,0.7);
+	position: absolute;
+	bottom:10px;
+	left:322px;
+	overflow: hidden;
+	z-index: 999999999;
+}
+.mgbox3-circle ul{
+	width: 56px;
+	height:10px;
+	margin-top:5px;
+	margin-left:5px;
+	display: flex;
+	justify-content: space-between;
+
+}
+.mgbox3-circle ul li{
+	width: 10px;
+	height:10px;
+	border-radius:50%;
+	background: #5d5d5c;
+	cursor: pointer;
+}
+.mgbox3-circle ul li:hover{
+	background: #e40078;
+}
+.mgbox3-circle .active{
+	background: #e40078;
+}
+.nihao .active{
+	z-index: 2;
+	opacity: 1;
+}
+
 .mgbox3-bottom{
 	    width: 722px;
     height: auto;
@@ -1183,63 +1237,91 @@ nav{
 	display: inline-block;
 	text-align: center;
 }
-.cdaohang{
-	width:40px;
+
+
+#menu{
+	width: 40px;
 	height: 280px;
 	position: fixed;
-	top:200px;
-	left:50%;
-	margin-left:-660px;
-	z-index: 99999;
+	top: 200px;
+	left: 50%;
+	margin-left: -660px;
+	z-index: 999;
 	display: none;
 }
-.cdaohang ul li{
+#menu ul li {
 	width: 28px;
-	height:39px;
+	height: 39px;
 	padding: 0 2px;
-	color: #333;
+	color: #333333;
 	text-align: center;
 	line-height: 39px;
 	border-bottom: 1px dotted #c2c2c2;
-	background: #fff;
-	box-sizing: border-box;
-	font-size:12px;
-	cursor:pointer;
-}
-.cdaohang ul li:hover{
-	background: #3eb4fa;
-}
-.cdaohang ul li.active{
-	background: #3eb4fa;
-}
-.cdaohang ul li span{
-	width: 28px;
-	height:39px;
-	padding: 0 2px;
-	color: #333;
-	text-align: center;
-	line-height: 39px;
-	background: #3eb4fa;
-	box-sizing: border-box;
-	font-size:12px;
-	opacity: 0;
-}
-/*.cdaohang ul li:hover span{*/
-	/*opacity:1;*/
-/*}*/
+	background: #ffffff;
+	position: relative;
+	box-sizing: content-box!important;
+	cursor: pointer;
 
-.totop{
-	width: 28px;
-	height:49px;
-	background:rgba(0,0,0,0.6);
-	box-sizing: border-box;
-	color: #fff;
-	padding: 0 2px;
-	text-align: center;
-	line-height: 49px;
-	font-size: 8px;
-	cursor:pointer;
+
 }
+#menu ul li span {
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: #00B0F9;
+	color: #fff;
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	font-size: 12px;
+	box-sizing: border-box;
+	padding-top: 4px;
+	line-height: 100%;
+	text-align: center;
+
+}
+
+#menu ul li.back {
+	border: 0px;
+}
+#menu ul li span.active {
+	color: #ffffff;
+	background: #00b0f9;
+}
+#menu .active span{
+	opacity: 1;
+}
+#menu span:hover{
+	opacity: 1;
+}
+
+
+/*a:link, a:visited {*/
+/*text-decoration: none;*/
+/*transition: all 0.2s ease;*/
+/*cursor: pointer;*/
+/*color: #666;*/
+/*}*/
+#menu ul li.back span {
+	opacity: 1;
+	width: 28px;
+	height: 30px;
+	padding: 15px 2px 9px;
+	font: 12px/15px "microsoft yahei";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0px;
+	bottom: 0px;
+	color: #ffffff;
+	background: #918888 url(../img/slidedown4.png) no-repeat center 7px;
+	box-sizing: content-box!important;
+}
+
+
+
+
 .topbar{
 	width:100%;
 	height:61px;
