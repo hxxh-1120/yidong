@@ -156,23 +156,72 @@
 
 //无缝轮播
 {
-    let zuoyi=document.querySelector(".yhzq-gundong ul");
+    let box=document.querySelector(".yhzq-gundong");
+    let innerObj=document.querySelector(".yhzq-gundong ul");
     let items=document.querySelectorAll(".yhzq-gundong ul li");
-    let num=0;
-    var st=setInterval(function(){
-       num++;
-       if (num===1){
-           zuoyi.style.transition="all 1s";
-       }
-       zuoyi.style.marginLeft=-[num]*241+"px";
-     },3000);
-    zuoyi.addEventListener("transitionend",function(){
-        if(num===items.length-4){
-            zuoyi.style.transition="none";
-            num=0;
-            zuoyi.style.marginLeft=0;
+    let next=document.querySelector(".yhzq-right");
+    let before=document.querySelector(".yhzq-left");
+    let bir="right";
+    console.log(box);
+    console.log(innerObj);
+    console.log(items);
+    let n=3;
+    function moveFn() {
+        innerObj.style.transition="all 1s";
+        if(bir==="right"){
+            n++;
+        }else if(bir==="left"){
+            n--;
+        }
+        innerObj.style.marginLeft=-n*241+"px";
+    }
+
+    innerObj.addEventListener("transitionend",function(){
+        flag=true;
+        if(n===8){
+            innerObj.style.transition="none";
+            innerObj.style.marginLeft=-964+"px";
+            n=4;
+        }
+        if(n===0){
+            innerObj.style.transition="none";
+            innerObj.style.marginLeft=-1928+"px";
+            n=8;
         }
     })
+    let st=setInterval(moveFn,3000);
+    //鼠标移入or失去焦点
+    box.onmouseover=function(){
+        clearInterval(st);
+    };
+    box.onmouseout=function(){
+        st=setInterval(moveFn,3000);
+    };
+    window.onblur=function(){
+        clearInterval(st);
+    };
+    window.onfous=function(){
+        setInterval(moveFn,3000);
+    };
+    //下一个
+    let flag=true;
+    next.onclick=function(){
+        console.log("右点击测试");
+        if(flag){
+            bir="right";
+            flag=false;
+            moveFn();
+        }
+    };
+    before.onclick=function (){
+        console.log("左点击测试");
+        if(flag){
+            bir="left";
+            flag=false;
+            moveFn();
+        }
+    }
+
 
 }
 
@@ -290,6 +339,4 @@
             // ce[index].style.borderColor="#fff";
         }
     })
-
-
 }

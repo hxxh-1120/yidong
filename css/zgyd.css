@@ -590,17 +590,17 @@ cur {
 	overflow: hidden;
 }
 .yhzq-gundong ul{
-	width: 1928px;
+	width: 5000px;
 	height: 170px;
-	display: flex;
-	justify-content: space-between;
 	transition: all 1s;
+	margin-left:-964px;
 }
 .yhzq-gundong ul li{
 	height:170px;
 	width: 235px; 
 	margin-right: 6px;
 	background: #F4F4F4;
+	float: left;
 }
 
 .yhzq-gundong ul li h2{
