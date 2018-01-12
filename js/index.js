@@ -224,3 +224,72 @@
     }
 }
 
+//客服鼠标移入
+{
+    let logo=document.querySelectorAll(".logo");
+    let wz=document.querySelectorAll(".wz");
+    let lg1=document.querySelector(".lg1");
+    let lg2=document.querySelector(".lg2");
+    let lg3=document.querySelector(".lg3");
+    logo.forEach(function(ele,index){
+        ele.onmouseover=function(){
+            wz[index].style.display="block";
+            wz[index].style.background="#3eb4fa";
+
+        }
+        ele.onmouseout=function(){
+
+            wz[index].style.display="none";
+        }
+    })
+}
+
+//客户端
+{
+    let kehuduan=document.querySelector(".head-right ul .a");
+    let erweima=document.querySelector(".erweima");
+    kehuduan.onmouseover=function(){
+        this.classList.add("wocao");
+        erweima.style.display="block";
+    }
+    kehuduan.onmouseout=function(){
+        this.classList.remove("wocao");
+        erweima.style.display="none";
+    }
+
+}
+
+//测导航
+{
+    let  ce=document.querySelectorAll(".center .aside ul li");
+    let  nav=document.querySelectorAll(".nav2");
+    let banner=document.querySelector(".center")
+    console.log(ce)
+    ce.forEach(function (ele,index) {
+        ele.onmouseover=function(){
+            nav.forEach(function(ele){
+                ele.style.display="none";
+            })
+            nav[index].style.display="block";
+            // ce[index].style.borderColor="#3eb4fa";
+            ce[index].classList.add("cur");
+            // ce[index].style.borderRight="#fff";
+        }
+        nav[index].onmouseout=function(){
+            nav[index].style.display="none";
+            ce[index].classList.remove("cur");
+        }
+        nav[index].onmouseover=function(){
+            ce[index].classList.add("cur");
+            nav[index].style.display="block";
+        }
+        ce[index].onmouseout=function(){
+            ce[index].classList.remove("cur");
+            nav[index].style.display="none";
+
+            // ce[index].style.borderColor="#fff";
+        }
+    })
+
+
+}
